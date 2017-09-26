@@ -1,0 +1,15 @@
+html,
+body {
+  background-color: cyan;
+  font-size: 24px;
+  color: blue;
+}
+
+ul {
+  display: block;
+  cursor: pointer
+}
+
+.close ul {
+  display: none;
+}
