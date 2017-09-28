@@ -1,0 +1,44 @@
+html,
+body {
+  background-color: cyan;
+  font-size: 24px;
+  color: blue;
+
+}
+
+ul {
+  display: block;
+  cursor: pointer;
+  color: blue;
+}
+
+.close ul {
+  display: none;
+}
+
+.close ul:before {
+  content:'';
+
+}
+
+li {
+  list-style: none;
+}
+
+li:before {
+  content:'';
+  background: blue;
+  display: inline-block;
+  border-radius: 1em;
+  margin: 5px 10px;
+  width: 15px;
+  height: 15px;
+}
+
+li:hover:before {
+  background-color: green;
+}
+
+li:hover {
+  color: green;
+}
