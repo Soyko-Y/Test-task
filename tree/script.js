@@ -89,34 +89,39 @@ var data =
   ]
 };
 
-var div = document.createElement('div');
-var list = '';
+(function () {
+    var div = document.createElement('div');
 
-function printTree(item) {
-        
-        for(i in item) {
-            if (item[i] instanceof Array) {
-                list += '<ul>';
-                printTree(item[i]);
-                list += '</ul>';
-                continue;
-            }
+    (function () {
+        var list = '';
 
-            else if (item[i] instanceof Object) {
-                list += '<li id = "li">';
-                printTree(item[i]);
-                list += '</li>';
-                continue;
+        function roundTree(item) {
+                
+            for(i in item) {
+                if (item[i] instanceof Array) {
+                    list += '<ul>';
+                    roundTree(item[i]);
+                    list += '</ul>';
+                    continue;
+                }
+                else if (item[i] instanceof Object) {
+                    list += '<li id = "li">';
+                    roundTree(item[i]);
+                    list += '</li>';
+                    continue;
+                }
+                list += item[i];
             }
-            list += item[i];
+            return list;
         }
-}
-printTree(data);
-div.innerHTML = '<ul>' +  '<li id = "li">' + list + '</ul>' + '</li>';
-document.body.appendChild(div); 
 
-var li = document.getElementById('li');
+        window.printTree = roundTree;
+    })();
 
-li.addEventListener('click', e => {
-  e.target.classList.toggle('close');
-})
+    div.innerHTML = '<ul>' + '<li id = "li">' + printTree(data) + '</ul>' + '</li>';
+    document.body.appendChild(div);
+
+    var li = document.getElementById('li');
+
+    li.addEventListener('click', e => e.target.classList.toggle('close'))
+})();
